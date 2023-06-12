@@ -4,6 +4,7 @@ import com.zegasoftware.countries.mapper.CountryMapper;
 import com.zegasoftware.countries.model.dto.CountryDto;
 import com.zegasoftware.countries.model.entity.Country;
 import com.zegasoftware.countries.repository.CountryRepository;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CountryServiceImpl implements CountryService {
     private final RestTemplate restTemplate;
     private final CountryRepository countryRepository;
@@ -28,12 +30,6 @@ public class CountryServiceImpl implements CountryService {
     private final CountryMapper countryMapper;
     private final Logger logger = LoggerFactory.getLogger(CountryServiceImpl.class);
 
-    public CountryServiceImpl(RestTemplate restTemplate, CountryRepository countryRepository, Environment environment, CountryMapper countryMapper) {
-        this.restTemplate = restTemplate;
-        this.countryRepository = countryRepository;
-        this.environment = environment;
-        this.countryMapper = countryMapper;
-    }
     @Override
     public List<CountryDto> getAllCountries() {
         saveCountriesToDatabase();
