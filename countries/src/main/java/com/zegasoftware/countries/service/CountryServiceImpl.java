@@ -93,7 +93,6 @@ public class CountryServiceImpl implements CountryService {
     }
 
     private void restartSequence() {
-        // Retrieve connection parameters from application.properties
         String url = environment.getProperty("spring.datasource.url");
         String username = environment.getProperty("spring.datasource.username");
         String password = environment.getProperty("spring.datasource.password");
