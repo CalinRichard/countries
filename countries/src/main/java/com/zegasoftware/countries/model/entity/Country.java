@@ -1,10 +1,16 @@
 package com.zegasoftware.countries.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
-@Data
+import java.util.Objects;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "countries")
 public class Country {
@@ -26,4 +32,24 @@ public class Country {
     private int area;
     @Column
     private Integer population;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Country country = (Country) o;
+        return id == country.id &&
+                area == country.area &&
+                Objects.equals(name, country.name) &&
+                Objects.equals(capital, country.capital) &&
+                Objects.equals(timezones, country.timezones) &&
+                Objects.equals(subregion, country.subregion) &&
+                Objects.equals(borders, country.borders) &&
+                Objects.equals(population, country.population);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, capital, timezones, subregion, borders, area, population);
+    }
 }
