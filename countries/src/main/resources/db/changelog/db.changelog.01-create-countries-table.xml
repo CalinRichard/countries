@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="db.changelog.01-create_countries_table" author="richard.calin">
+       <sql>
+           CREATE TABLE IF NOT EXISTS countries (
+           id SERIAL PRIMARY KEY,
+           name VARCHAR(255),
+           capital VARCHAR(255),
+           timezones TEXT[],
+           subregion VARCHAR(255),
+           borders TEXT[],
+           area INTEGER,
+           population INTEGER
+           );
+       </sql>
+    </changeSet>
+
+</databaseChangeLog>
