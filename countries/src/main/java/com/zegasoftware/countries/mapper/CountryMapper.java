@@ -9,8 +9,8 @@ import org.mapstruct.factory.Mappers;
 public interface CountryMapper {
     CountryMapper INSTANCE = Mappers.getMapper(CountryMapper.class);
 
-    CountryDto map(Country user);
+    CountryDto map(Country country);
 
     @InheritInverseConfiguration(name = "map")
-    Country map(CountryDto userDto);
+    Country map(CountryDto countryDto);
 }
