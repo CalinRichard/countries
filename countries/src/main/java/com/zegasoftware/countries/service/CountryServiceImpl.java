@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -40,7 +43,14 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Optional<CountryDto> getCountryById(int id) {
-        return countryRepository.findById(id).map(countryMapper::map);
+        return countryRepository.findById(id)
+                .map(countryMapper::map);
+    }
+
+    @Override
+    public Page<CountryDto> findCountriesWithPaginationAndSorting(int offset, int pageSize, String field) {
+        return countryRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)))
+                .map(countryMapper::map);
     }
 
     private void saveCountriesToDatabase() {
